@@ -7,23 +7,20 @@ using namespace std;
 
 class Solution {
    public:
-    void rotate(vector<int>& nums, int k) {
-        int start = 0, count = 0, size = nums.size();
-
-        while (count < size) {
-            int current = start, prev = nums[current];
-
-            do {
-                int next_idx = (current + k) % size;
-                int temp = nums[next_idx];
-                nums[next_idx] = prev;
-                prev = temp;
-                current = next_idx;
-                count++;
-
-            } while (current != start);
+    void reverse(vector<int>& nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[end];
+            nums[end] = nums[start];
+            nums[start] = temp;
+            end--;
             start++;
         }
+    }
+    void rotate(vector<int>& nums, int k) {
+        int size=nums.size();
+        reverse(nums,0,size-1);
+        reverse(nums,k,size-1);
+        reverse(nums,0,k-1);
     }
 };
 
