@@ -1,30 +1,50 @@
 #include <iostream>
+#include <iterator>
 #include <vector>
-
 using namespace std;
 
 class Solution {
    public:
     void moveZeroes(vector<int>& nums) {
-        auto itr_zero = nums.begin();
-        auto itr = itr_zero;
+        auto zero_itr = nums.begin();
+        auto pos_itr = zero_itr;
         int temp;
-        while (itr_zero != nums.end() && itr != nums.end()) {
-            if (*itr_zero != 0) {
-                itr_zero++;
-                itr++;
-                continue;
+        while (pos_itr != nums.end()) {
+            /*
+            The zero_ptr and pos_ptr moves along through non-zero elements,
+            if a zero is encountered zero_ptr stay at the same place and only
+            the pos_ptr is moved ahead. Now the next non-zero element will
+            get replaced the moment the pos_ptr points to it. And as the
+            zero_ptr was pointing to the last zero encountered, the values will
+            be swapped and the zero will move to the pos_itr position.
+            */
+            std::cout << "Before current vector is :";
+            for (auto i : nums) {
+                std::cout << i << " ";
             }
-            if (*itr == 0) {
-                itr++;
-                continue;
+            std::cout << "with the zero_itr at index "
+                      << std::distance(nums.begin(), zero_itr)
+                      << " and the pos_itr at index "
+                      << std::distance(nums.begin(), pos_itr)
+                      << endl;
+            if (*pos_itr != 0) {
+                int temp = *zero_itr;
+                *zero_itr = *pos_itr;
+                *pos_itr = temp;
+
+                zero_itr++;
             }
-            if (*itr_zero == 0 && *itr != 0) {
-                *itr_zero = *itr;
-                *itr = 0;
-                itr_zero++;
-                itr++;
+            pos_itr++;
+
+            std::cout << "After  current vector is :";
+            for (auto i : nums) {
+                std::cout << i << " ";
             }
+            std::cout << "with the zero_itr at index "
+                      << std::distance(nums.begin(), zero_itr)
+                      << " and the pos_itr at index "
+                      << std::distance(nums.begin(), pos_itr)
+                      << endl;
         }
     }
 };
@@ -32,7 +52,7 @@ class Solution {
 // main function for testing the code
 int main() {
     Solution sol;
-    vector<int> nums = {1};
+    vector<int> nums = {1, 4, 0, 5, 0, 2};
     sol.moveZeroes(nums);
     for (int i = 0; i < nums.size(); i++) {
         cout << nums[i] << " ";
