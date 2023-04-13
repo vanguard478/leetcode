@@ -18,15 +18,7 @@ class Solution {
             zero_ptr was pointing to the last zero encountered, the values will
             be swapped and the zero will move to the pos_itr position.
             */
-            std::cout << "Before current vector is :";
-            for (auto i : nums) {
-                std::cout << i << " ";
-            }
-            std::cout << "with the zero_itr at index "
-                      << std::distance(nums.begin(), zero_itr)
-                      << " and the pos_itr at index "
-                      << std::distance(nums.begin(), pos_itr)
-                      << endl;
+
             if (*pos_itr != 0) {
                 int temp = *zero_itr;
                 *zero_itr = *pos_itr;
@@ -36,15 +28,7 @@ class Solution {
             }
             pos_itr++;
 
-            std::cout << "After  current vector is :";
-            for (auto i : nums) {
-                std::cout << i << " ";
-            }
-            std::cout << "with the zero_itr at index "
-                      << std::distance(nums.begin(), zero_itr)
-                      << " and the pos_itr at index "
-                      << std::distance(nums.begin(), pos_itr)
-                      << endl;
+
         }
     }
 };
