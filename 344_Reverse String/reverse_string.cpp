@@ -8,7 +8,7 @@ public:
         auto start=s.begin();
         auto end=prev(s.end());
 
-        while(start!=end){
+        while(start<=end){
             char temp=*start;
             *start=*end;
             *end=temp;
