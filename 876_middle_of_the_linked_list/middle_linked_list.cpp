@@ -1,8 +1,8 @@
 // headers for cpp
+#include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
-#include<cmath>
 using namespace std;
 
 // Definition for singly-linked list.
@@ -17,22 +17,13 @@ struct ListNode {
 class Solution {
 public:
   ListNode *middleNode(ListNode *head) {
-    int i = 0;
-    ListNode *temp = new ListNode();
-    temp = head;
-    while (temp != nullptr && temp->next != nullptr) {
-      ++i;
-      temp = temp->next;
+    ListNode *slow_ptr = head;
+    ListNode *fast_ptr = head;
+    while (fast_ptr != nullptr && fast_ptr->next != nullptr) {
+      slow_ptr = slow_ptr->next;
+      fast_ptr = fast_ptr->next;
     }
-    int target = ceil(i/2.0);
-    std::cout<<"Middle node is "<<target<< " with number of node"<<i<<std::endl;
-    i = 0;
-    temp = head;
-    while (i < target) {
-      temp= temp->next;
-      i++;
-    }
-    return temp;
+    return slow_ptr;
   }
 };
 
@@ -45,7 +36,7 @@ int main() {
   ListNode *fourth = new ListNode(4);
   ListNode *fifth = new ListNode(5);
   ListNode *sixth = new ListNode(6);
-  
+
   head->next = second;
   second->next = third;
   third->next = fourth;
