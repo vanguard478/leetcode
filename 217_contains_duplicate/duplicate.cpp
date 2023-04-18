@@ -1,17 +1,17 @@
 #include <iostream>
-#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 
 class Solution {
    public:
     bool containsDuplicate(vector<int>& nums) {
-        std::unordered_map<int, int> map;
+        std::unordered_set<int> num_set;
         for (auto i : nums) {
-            if (map.count(i) > 0) {
+            if (num_set.find(i) != num_set.end()) {
                 return true;
             }
-            map[i]++;
+            num_set.insert(i);
         }
         return false;
     }
