@@ -2,33 +2,8 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-
+#include "../utils/draw_ptr_for_str.h"
 using namespace std;
-void draw_pointers(const std::string &str, int left_idx, int right_idx) {
-  std::string left_pointer = "L";
-  std::string right_pointer = "R";
-
-  // Print array elements
-  for (int i = 0; i < str.size(); ++i) {
-    std::cout << str[i] << ' ';
-  }
-  std::cout << '\n';
-
-  // Draw pointers below the array
-  for (int i = 0; i < str.size(); ++i) {
-    if (i == left_idx && i == right_idx) {
-      std::cout << 'B'; // Both pointers at the same position
-    } else if (i == left_idx) {
-      std::cout << left_pointer;
-    } else if (i == right_idx) {
-      std::cout << right_pointer;
-    } else {
-      std::cout << ' ';
-    }
-    std::cout << ' ';
-  }
-  std::cout << '\n';
-}
 
 class Solution {
 public:
@@ -44,7 +19,15 @@ public:
       chars[r]++;
       std::cout << "**Entry** :\n";
       draw_pointers(s, left, right);
-
+      /**
+       * @brief In this case when a character is found which is repeated, 
+       * we go through the whole subtring previous intial index i.e. l towards
+       * the right index untill the current char right has a count = 1. Notice 
+       * that in this process, other letters which were in the sub-string can
+       * have the index reduced back to 0 as we are moving from left to right
+       * over the substring.
+       * 
+       */
       while (chars[r] > 1) {
         char l = s[left];
         chars[l]--;
