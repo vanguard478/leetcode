@@ -21,7 +21,7 @@ public:
     ListNode *fast_ptr = head;
     while (fast_ptr != nullptr && fast_ptr->next != nullptr) {
       slow_ptr = slow_ptr->next;
-      fast_ptr = fast_ptr->next;
+      fast_ptr = fast_ptr->next->next;
     }
     return slow_ptr;
   }
@@ -44,6 +44,6 @@ int main() {
   fifth->next = sixth;
   sixth->next = nullptr;
   ListNode *result = sol.middleNode(head);
-  // cout << result->val << endl;
+  cout << result->val << endl;
   return 0;
 }
