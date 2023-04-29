@@ -18,6 +18,7 @@ class Solution {
         }
         return true;
     }
+
 };
 
 //testing code for isPalindrome
