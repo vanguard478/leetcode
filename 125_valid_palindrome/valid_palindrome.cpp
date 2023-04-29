@@ -12,18 +12,8 @@ class Solution {
             while (i < j && !isalnum(str[i]))
                 ++i;
             while (i < j && !isalnum(str[j]))
-                ++j;
-            if (i < j && tolower(str[i++]) != tolower(str[j--])) return false;
-        }
-        return true;
-    }
-    bool isPalindrome1(string str) {
-        int i = 0, j = str.size();
-        while (i < j) {
-            while (i < j && !isalnum(str[i]))
-                ++i;
-            while (i < j && !isalnum(str[j]))
                 --j;
+            //We are incrementing the indices here inside the if condition
             if (i < j && tolower(str[i++]) != tolower(str[j--])) return false;
         }
         return true;
