@@ -16,7 +16,7 @@ class Solution {
                 char top = stk.top();
                 stk.pop();
                 if (
-                    ch == '(' && top != ')' || ch == '{' && top != '}' || ch == '[' && top != ']') {
+                    ch == ')' && top != '(' || ch == '}' && top != '{' || ch == ']' && top != '[') {
                     return false;
                 }
             }
