@@ -1,41 +1,56 @@
-#include<iostream>
-struct Node{
-    int m_value;
-    int m_min_value;
-    Node* m_next;
-    Node(int value,int min_value,Node* node):m_value(value), m_min_value(min_value),m_next(node){
+#include <iostream>
 
-    }
-    private:
-        int top;
-
-};
 class MinStack {
-public:
+   private:
+    struct Node {
+        int m_value;
+        int m_min_value;
+        Node* m_next;
+        Node(int value, int min_value, Node* node) : m_value(value), m_min_value(min_value), m_next(node) {}
+    };
+
+   public:
     Node* topNode = nullptr;
     MinStack() {
     }
-    
-    void push(int val) {
-        if(!topNode || val<= topNode->m_min_value) {
-            topNode = new Node(val,val,topNode);
-        }
-        else {
-            topNode = new Node(val,topNode->m_min_value,topNode);
+
+    ~MinStack() {
+        while (topNode!=nullptr){
+            pop();
         }
     }
-    
+
+    void push(int val) {
+        if (!topNode || val <= topNode->m_min_value) {
+            topNode = new Node(val, val, topNode);
+        } else {
+            topNode = new Node(val, topNode->m_min_value, topNode);
+        }
+    }
+
     void pop() {
+        if (topNode == nullptr) {
+            std::cerr << "Stack is empty" << std::endl;
+            return;
+        }
         auto old_ptr = topNode;
         topNode = topNode->m_next;
         delete old_ptr;
     }
-    
+
     int top() {
+        if (topNode == nullptr) {
+            std::cerr << "Stack is empty" << std::endl;
+            return -1;
+        }
         return topNode->m_value;
     }
-    
+
     int getMin() {
+        if (topNode == nullptr) {
+            std::cerr << "Stack is empty" << std::endl;
+            return -1;
+        }
         return topNode->m_min_value;
     }
 };
