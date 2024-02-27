@@ -9,7 +9,6 @@ file(GLOB SOURCES "*.cpp")
 foreach(SOURCE ${SOURCES})
     # Get the file name without the extension
     get_filename_component(FILE_NAME ${SOURCE} NAME_WE)
-    set(TARGET_NAME "${PROJECT_DIR_NAME}_${FILE_NAME}")
 
     # Check if the corresponding header file exists
     set(HEADER_FILE "${FILE_NAME}.h")
@@ -18,7 +17,7 @@ foreach(SOURCE ${SOURCES})
         add_executable(${FILE_NAME} ${SOURCE} ${HEADER_FILE})
     else()
         # If no corresponding header, just add the source file
-        add_executable(${TARGET_NAME} ${SOURCE})
+        add_executable(${FILE_NAME} ${SOURCE})
     endif()
 
     # Link libraries here if needed
