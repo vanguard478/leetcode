@@ -23,3 +23,10 @@ class Solution {
     }
 };
 
+int main() {
+    Solution sol;
+    vector<int> nums = {2,1};
+    int minNum = sol.findMin(nums);
+    cout << "Minimum number: " << minNum << endl;
+    return 0;
+}

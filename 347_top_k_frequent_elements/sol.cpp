@@ -15,9 +15,7 @@ class Solution {
         auto comparator = [](const pair<int, int>& a, const pair<int, int>& b) {
             return a.second > b.second;
         };
-        std::priority_queue<pair<int, int>, vector<pair<int, int>>,
-                            decltype(comparator)>
-            pq(comparator);
+        std::priority_queue<pair<int, int>, vector<pair<int, int>>,decltype(comparator)> pq(comparator);
 
         // Since we are poping the top element to keep only TOP k elements in the
         // priority queue, we need to put elements in PQ such that the smallest
@@ -48,8 +46,8 @@ class Solution {
 
 int main() {
     Solution sol;
-    vector<int> nums = {1, 1, 1, 2, 2, 3};
-    int k = 2;
+    vector<int> nums = {0,0,0,0,0,0,1, 1, 1,2,3, 2, 2,3,3,3,3,3,3, 3};
+    int k = 3;
     vector<int> res = sol.topKFrequent(nums, k);
     for (auto i : res) {
         cout << i << " ";
