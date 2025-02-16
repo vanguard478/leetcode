@@ -3,7 +3,6 @@ name: C/C++ CI
 on:
   workflow_dispatch:
 
-
 jobs:
   build:
 
@@ -11,11 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Configure with CMake
+      run: cmake -S . -B build
+
+    - name: Build with CMake
+      run: cmake --build build
