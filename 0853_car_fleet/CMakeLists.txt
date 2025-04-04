@@ -21,14 +21,14 @@ foreach(SOURCE ${SOURCES})
         add_executable(${TARGET_NAME} ${SOURCE})
     endif()
 
-    # If this is our test file (e.g. solution.cpp containing tests), link with gtest_main.
-    if(FILE_NAME STREQUAL "solution")
+    # If this file's name starts with "solution", link with gtest_main.
+    if(FILE_NAME MATCHES "^solution")
         target_link_libraries(${TARGET_NAME} PRIVATE gtest gtest_main)
     endif()
-
+    
     set_target_properties(${TARGET_NAME} PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    )
+    )   
     # Link libraries here if needed
     # target_link_libraries(${FILE_NAME} ...)
 endforeach()
